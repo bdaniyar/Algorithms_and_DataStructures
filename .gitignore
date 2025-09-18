@@ -1,0 +1,8 @@
+# Ignore notes-like files everywhere
+notes.md
+*notes*.md
+**/notes.md
+**/*notes*.md
+# Ignore macOS Finder metadata everywhere
+.DS_Store
+**/.DS_Store
