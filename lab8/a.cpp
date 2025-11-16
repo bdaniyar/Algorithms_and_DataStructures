@@ -13,6 +13,11 @@ string hashing(const string&s){
         h = (h + ((c - 47) * p) % MOD) % MOD; 
         p = (p * 11) % MOD; 
     }
+    // ASCII '1' = 49 
+    // 49-47 = 2
+    // (49-47) * 11 = 22
+    // (49-47) * 11^2 = 2* 121 = 242
+    // h = 2 + 22 + 242 = 266
 
     return to_string(h);
 }
