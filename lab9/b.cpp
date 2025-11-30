@@ -8,7 +8,7 @@ vector<int> build_lps(const string &pat){
     int len = 0;
     int i = 1;
     while(i < m){
-        if(pat[i] == pat[len]){
+        if(pat[i] == pat[len]){ // If the current character matches the beginning, we increase the len
             len++;
             lps[i] = len;
             i++;
@@ -33,8 +33,8 @@ int kmp_count(const string &text, const string &pattern){
     int cnt = 0;
     while(i < n){
         if(text[i] == pattern[j]){
-            i++; j++;
-            if(j == m){
+            i++; j++; // if symbols equal then i++, j++
+            if(j == m){ // if text = pattern cnt++
                 cnt++;
                 j = lps[j-1];
             }

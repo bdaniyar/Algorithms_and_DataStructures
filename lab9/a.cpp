@@ -2,11 +2,11 @@
 #include <vector>
 using namespace std;
 
-// Функция построения LPS (Longest Prefix Suffix)
+
 vector<int> build_lps(const string &pat) {
     int m = pat.size();
     vector<int> lps(m, 0);
-    int len = 0; // длина текущего совпадающего префикса
+    int len = 0; 
     int i = 1;
 
     while (i < m) {
@@ -26,7 +26,7 @@ vector<int> build_lps(const string &pat) {
     return lps;
 }
 
-// Проверка: содержится ли pattern в text с помощью KMP
+
 bool kmp_search(const string &text, const string &pattern) {
     int n = text.size(), m = pattern.size();
     vector<int> lps = build_lps(pattern);
@@ -35,7 +35,7 @@ bool kmp_search(const string &text, const string &pattern) {
     while (i < n) {
         if (text[i] == pattern[j]) {
             i++; j++;
-            if (j == m) return true; // нашли подстроку
+            if (j == m) return true; 
         } else {
             if (j != 0) j = lps[j - 1];
             else i++;
@@ -51,7 +51,6 @@ int main() {
     string A, B;
     cin >> A >> B;
 
-    // Если B уже содержится в A
     if (A.find(B) != string::npos) {
         cout << 1;
         return 0;
@@ -60,13 +59,11 @@ int main() {
     string repeated = A;
     int count = 1;
 
-    // Повторяем A, пока длина не >= длины B
     while ((int)repeated.size() < (int)B.size()) {
         repeated += A;
         count++;
     }
-
-    // Проверяем текущую строку и плюс одно повторение (чтобы покрыть смещение)
+    
     if (kmp_search(repeated, B)) {
         cout << count;
         return 0;

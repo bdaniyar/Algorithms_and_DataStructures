@@ -166,3 +166,31 @@ vector<int> rabinkarp6(string text, string pattern){
     }
 }
 
+vector<int> rabinkarp7(string text, string pattern){
+    const int d = 256;
+    const int q = 101;
+    int p = 0;
+    int t =0;
+    int h = 1;
+    vector<int> result;
+    int n = text.size();
+    int m = pattern.size();
+    for(int i=0;i<m-1;i++){
+        h = (h*d) % q;
+    }
+    for(int i=0;i<m;i++){
+        p = (p*d + pattern[i]) % q;
+        t = (t*d + text[i]) % q;
+    }
+    for(int i=0;i<m-n;i++){
+        if(p==t){
+            if(text.substr(i,m) == pattern){
+                result.push_back(i);
+            }
+        }
+        if(i<m-n){
+            t = (d*(t-text[i] *h) + text[i+m]) % q;
+            if(t<0) t+=q;
+        }
+    }
+}
